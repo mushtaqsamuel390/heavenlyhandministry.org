@@ -1,11 +1,948 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Heavenly Hand Ministry</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Heavenly Hand Ministry — Heavenly Light School</title>
+
+<style>
+  :root{
+    --bg:#eef2f7;
+    --card:#ffffff;
+    --accent:#ff9800;
+    --accent-soft:#ffe0b7;
+    --muted:#6b7280;
+    --text:#0f172a;
+    --radius:18px;
+    --shadow:0 12px 30px rgba(15,23,42,0.10);
+  }
+
+  *{box-sizing:border-box;}
+
+body{
+  margin:0;
+  padding:0;
+  background:#e5e7eb;  /* Tailwind style grey - تھوڑا dark soft */
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color:var(--text);
+}
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    color:var(--text);
+  }
+
+  a{text-decoration:none;}
+
+  .app{
+    max-width:960px;
+    margin:0 auto;
+    padding-bottom:100px; /* space for bottom nav */
+  }
+
+  /*
+
+
+ HEADER  ---------------------------------------------------- */
+  header.app-header{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:#ffffffdd;
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid #d5deea;
+    padding:14px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  header .logo .title{
+    font-size:20px;
+    font-weight:900;
+  }
+
+  header .logo .sub{
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  header nav a{
+    margin-left:16px;
+    font-size:14px;
+    color:var(--muted);
+  }
+
+  header nav a:hover{
+    color:var(--accent);
+  }
+
+  /* 
+
+ HERO  ------------------------------------------------------ */
+  .hero{
+    margin:18px;
+    padding:22px;
+    border-radius:var(--radius);
+    background:linear-gradient(135deg,#e7f0ff,#ffffff);
+    box-shadow:var(--shadow);
+    display:flex;
+    gap:20px;
+    align-items:center;
+  }
+
+  .portrait{
+    width:120px;
+    height:120px;
+    border-radius:16px;
+    overflow:hidden;
+    background:#ddd;
+    box-shadow:0 10px 24px rgba(0,0,0,0.14);
+    flex-shrink:0;
+  }
+
+  .portrait img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .hero h1{
+    margin:0;
+    font-size:22px;
+    font-weight:900;
+  }
+
+  .hero .role{
+    margin-top:4px;
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  .hero p{
+    margin:10px 0 0 0;
+    font-size:14px;
+    color:#1e2937;
+    line-height:1.6;
+  }
+
+  .cta{
+    margin-top:12px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    padding:9px 16px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:700;
+    border:none;
+    cursor:pointer;
+    display:inline-block;
+  }
+
+  .btn-primary{
+    background:var(--accent);
+    color:#fff;
+    box-shadow:0 8px 18px rgba(255,152,0,0.30);
+  }
+
+  .btn-ghost{
+    background:#fff;
+    color:var(--text);
+    border:1px solid #d7dfeb;
+  }
+
+ 
+
+
+ /* DONATE STRIP ----------------------------------------------- */
+  .donate-strip{
+    margin:0 18px 18px;
+    padding:14px 16px;
+    border-radius:16px;
+    background:linear-gradient(90deg,#ffe9b5,#ffd391);
+    box-shadow:var(--shadow);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+  }
+
+  .donate-strip .text{
+    font-size:13px;
+    font-weight:700;
+    color:#3b3b3b;
+  }
+
+  .donate-strip-buttons{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+
+  .donate-chip{
+    padding:7px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    border:none;
+    cursor:pointer;
+    background:#fff7e6;
+    color:#8a4b00;
+  }
+
+  .donate-chip.jazz{background:#ffaf3f;}
+  .donate-chip.easy{background:#ffc75c;}
+  .donate-chip.bank{background:#ffd88a;}
+
+  /* 
+
+GENERIC CARD ----------------------------------------------- */
+  .card{
+    margin:0 18px 18px;
+    padding:18px 20px;
+    border-radius:var(--radius);
+    background:var(--card);
+    box-shadow:var(--shadow);
+scroll-margin-top:90px; #home{
+  scroll-margin-top:90px;
+} }
+
+  .section-title{
+    margin:0 0 10px 0;
+    font-size:18px;
+    font-weight:900;
+ scroll-margin-top:90px; #home{
+  scroll-margin-top:90px;
+}}
+
+  .card p{
+    margin:0 0 10px 0;
+    font-size:14px;
+    color:#253142;
+    line-height:1.65;
+ scroll-margin-top:90px; #home{
+  scroll-margin-top:90px;
+}}
+
+  /* TIMELINE --------------------------------------------------- */
+  .timeline{
+    list-style:none;
+    margin:8px 0 0;
+    padding:0;
+  }
+
+  .timeline li{
+    display:flex;
+    gap:10px;
+    padding:10px 0;
+    border-top:1px dashed #d7dfeb;
+  }
+
+  .timeline li:first-child{
+    border-top:none;
+  }
+
+  .dot{
+    width:12px;
+    height:12px;
+    border-radius:999px;
+    background:var(--accent);
+    margin-top:6px;
+    flex-shrink:0;
+  }
+
+  .timeline-text{
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  /*
+
+ GALLERY ---------------------------------------------------- */
+  .gallery-grid{
+    margin-top:10px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+  }
+
+  .gallery-item{
+    border-radius:14px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 8px 18px rgba(15,23,42,0.06);
+  }
+
+  .gallery-item img{
+    width:100%;
+    height:130px;
+    object-fit:cover;
+    display:block;
+  }
+
+  .gallery-item .caption{
+    font-size:12px;
+    color:var(--muted);
+    padding:6px;
+    text-align:center;
+  }
+
+  /*
+
+
+ PROJECT CARDS ---------------------------------------------- */
+  .project-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:14px;
+    margin-top:10px;
+  }
+
+  .project{
+    padding:14px;
+    border-radius:14px;
+    background:#f9fbff;
+    border:1px solid #e1e7f2;
+  }
+
+  .project h3{
+    margin:0 0 6px 0;
+    font-size:15px;
+    font-weight:800;
+  }
+
+  .project p{
+    margin:0;
+    font-size:13px;
+    color:#374151;
+    line-height:1.5;
+  }
+
+  /* DONATE DETAILS --------------------------------------------- */
+  .donate-columns{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:16px;
+    margin-top:10px;
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  .donate-box{
+    padding:12px 14px;
+    border-radius:14px;
+    background:#f9fafb;
+    border:1px dashed #d1d5db;
+    text-align:left;
+  }
+
+  .donate-box h3{
+    margin:0 0 6px 0;
+    font-size:14px;
+    font-weight:800;
+    color:#111827;
+  }
+
+  .donate-box ul{
+    margin:0;
+    padding-left:16px;
+  }
+
+  .donate-box li{
+    margin-bottom:4px;
+  }
+
+  /* FOOTER ----------------------------------------------------- */
+  footer{
+    margin:0 18px 18px;
+    padding:16px;
+    text-align:center;
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  /*
+
+ BOTTOM NAV (MOBILE STYLE) ---------------------------------- */
+  .bottom-nav{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    background:#ffffff;
+    border-top:1px solid #d5deea;
+    display:flex;
+    justify-content:space-around;
+    padding:8px 0;
+    z-index:50;
+    box-shadow:0 -8px 20px rgba(15,23,42,0.12);
+  }
+
+  .nav-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:11px;
+    color:var(--muted);
+  }
+
+  .nav-item span{
+    margin-top:3px;
+  }
+
+  .nav-item svg{
+    width:20px;
+    height:20px;
+    fill:#6b7280;
+  }
+
+  @media (max-width:640px){
+    .hero{
+      flex-direction:row;
+    }
+    .gallery-grid{
+      grid-template-columns:repeat(2,1fr);
+    }
+  }
+</style>
 </head>
 <body>
-    <h1>Heavenly Hand Ministry</h1>
-    <p>In Jesus' Name serving children, families and community in Qila Mustafabad, Gujranwala.</p>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="logo">
+      <div class="title">Heavenly Hand Ministry</div>
+      <div class="sub">Founder &amp; CEO — Mushtaq Masih</div>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#school">School</a>
+      <a href="#projects">Projects</a>
+      <a href="#donate">Donate</a>
+    </nav>
+<div id="google_translate_element" class="translate-box"></div>
+<script> ... googleTranslateElementInit ... </script>
+<script src="https://translate.google.com/..."></script>
+  </header>
+
+
+<section class="hero" id="home">
+  <div class="portrait">
+    <img src="profile.jpg" alt="Mushtaq Masih">
+  </div>
+  <div class="meta">
+    <h1>Mushtaq Masih</h1>
+    <div class="role">Founder &amp; CEO — Heavenly Hand Ministry</div>
+Dedicated to the education, service and church work of poor children by the grace of God.
+    </p>
+    <div class="cta">
+      <a href="#gallery" class="btn btn-primary">View Gallery</a>
+      <a href="#donate" class="btn btn-ghost">Support Ministry</a>
+    </div>
+  </div>
+</section><!-- DONATION STRIP SHORT -->
+  <div class="donate-strip">
+    <div class="text">
+      Support school, outreach and orphan care. Choose your donation method:
+    </div>
+    <div class="donate-strip-buttons">
+      <button class="donate-chip jazz" onclick="location.href='#donate'">JazzCash</button>
+      <button class="donate-chip easy" onclick="location.href='#donate'">Easypaisa</button>
+      <button class="donate-chip bank" onclick="location.href='#donate'">Bank</button>
+    </div>
+  </div>
+
+<style>
+/* DONATION STRIP - SOFT LIGHT BLUE */
+.donate-strip {
+  background:#E3F2FD;  /* Light Soft Blue */
+  color:#0A4683;        /* Calm Deep Blue Text */
+  padding:12px;
+  border-radius:10px;
+  margin:18px 0;
+  text-align:center;
+  font-size:14px;
+  border:1px solid #B5D6F5; /* subtle border for softer feel */
+}
+
+.donate-strip-buttons button{
+  background:#ffffff;
+  color:#0A4683;
+  border:1px solid #0A4683;
+  padding:8px 14px;
+  margin:6px;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.donate-strip-buttons button:hover{
+  background:#D8EBFF;   /* very soft hover */
+  transform:scale(1.04);
+}
+</style>
+ <!-- BIOGRAPHY SECTION -->
+<section class="card" id="biography">
+  
+  <!-- TOP IMAGE BLOCK -->
+  <div style="text-align:center; margin-bottom:15px;">
+    <img src="bio.jpg" 
+         alt="Biography Photo" 
+         style="width:180px; border-radius:10px; cursor:pointer;"
+         onclick="document.getElementById('zoomImage').src=this.src; document.getElementById('zoomBox').style.display='flex';">
+  </div>
+
+  <h2 class="section-title">Biography</h2>
+
+  <p style="font-size:14px; line-height:1.7; text-align:justify;">
+    Mushtaq masih is the founder of Heavenly Hand Ministry and the Heavenly Light School.
+    With a heart dedicated to serving underprivileged children and families, he has devoted
+    his life to Christian ministry, education, and community support. His vision began after
+    surrendering his life to God and receiving a call to serve the poor, the needy, and the
+    forgotten.
+  </p>
+
+  <p style="font-size:14px; line-height:1.7; text-align:justify;">
+    He established a school to provide free education for children from brick-kiln and
+    low-income communities, ensuring they receive academic learning along with spiritual
+    formation and Christian values. Through the ministry, he continues outreach missions,
+    prayer meetings, family counseling, and community development work.
+  </p>
+
+  <p style="font-size:14px; line-height:1.7; text-align:justify;">
+    mushtaq masih believes that transformation begins with love, compassion, and the Gospel of
+    Christ. His ongoing vision includes expanding the school, building a community kitchen,
+    supporting orphans, and establishing a hospital to serve the poor with dignity.
+    Every step forward in this mission is a testimony of God’s faithfulness.
+  </p>
+
+</section>
+  <!-- JOURNEY -->
+  <section class="card">
+    <h2 class="section-title">Journey &amp; Milestones</h2>
+    <ul class="timeline">
+      <li>
+        <div class="dot"></div>
+        <div class="timeline-text">Repentance and full dedication of retirement to ministry work.</div>
+      </li>
+      <li>
+        <div class="dot"></div>
+        <div class="timeline-text">Started house fellowship and planted a small local church.</div>
+      </li>
+      <li>
+        <div class="dot"></div>
+        <div class="timeline-text">Founded Heavenly Light School with an initial batch of 47 children.</div>
+      </li>
+      <li>
+        <div class="dot"></div>
+        <div class="timeline-text">Launched outreach visits, school-meal plans and vision for orphan care.</div>
+      </li>
+      <li>
+        <div class="dot"></div>
+        <div class="timeline-text">Praying and planning for a community kitchen and basic medical support unit.</div>
+      </li>
+    </ul>
+  </section>
+
+ 
+<!-- SCHOOL -->
+  <section class="card" id="school">
+    <h2 class="section-title">Heavenly Light School</h2>
+    <p>
+      The school offers basic literacy, moral teaching, discipline and a safe Christian
+      environment for children from brick-kiln and low-income families.
+    </p>
+
+    <div class="gallery-grid" id="gallery">
+
+        <div class="gallery-item">
+        <img src="school1.jpg" alt="Morning assembly"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="school2.jpg" alt="Class formation"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="school3.jpg" alt="Worship time"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="school4.jpg" alt="Indoor classroom"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="school5.jpg" alt="Study groups"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="school6.jpg" alt="Girls worship team"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+  <div class="gallery-item">
+        <img src="school7.jpg" alt="Morning assembly"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="school8.jpg" alt="Class formation"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="school9.jpg" alt="Worship time"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="school10.jpg" alt="Indoor classroom"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="school11.jpg" alt="Study groups"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="school12.jpg" alt="Girls worship team"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MINISTRY (ALAG BLOCK) -->
+  <section class="card" id="ministry">
+    <h2 class="section-title">Heavenly Hand Ministry</h2>
+    <p>
+      weekly output
+    </p>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item">
+        <img src="min1.jpg" alt="Ministry Work 1"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="min2.jpg" alt="Ministry Work 2"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="min3.jpg" alt="Ministry Work 3"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="min4.jpg" alt="Ministry Work 4"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="min5.jpg" alt="Ministry Work 5"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="min6.jpg" alt="Ministry Work 6"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+    <div class="gallery-item">
+        <img src="min7.jpg" alt="Ministry Work 1"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="min8.jpg" alt="Ministry Work 2"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="min9.jpg" alt="Ministry Work 3"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption"></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="min10.jpg" alt="Ministry Work 4"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption">PRAYER ROOM UNDER CONSTRCRUTION</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="min11.jpg" alt="Ministry Work 5"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption">PRAYER ROOM UNDER CONSTRCRUTION</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="min12.jpg" alt="Ministry Work 6"
+             style="cursor:pointer;"
+             onclick="document.getElementById('zoomImage').src=this.src;document.getElementById('zoomBox').style.display='flex';">
+        <div class="caption">PRAYER ROOM UNDER CONSTRCRUTION</div>
+      </div>
+
+    </div>
+  </section>
+
+<!-- TESTIMONIES / VIDEOS -->
+  <section class="card" id="testimonies">
+    <h2 class="section-title">Testimonies &amp; Video Reports</h2>
+    <p>
+    MINISTRY TESTMONIES
+    </p>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item">
+        <video src="test1.mp4" controls style="width:100%; border-radius:10px;"></video>
+        <div class="caption">Testimony 1 – Family story</div>
+      </div>
+
+      <div class="gallery-item">
+        <video src="test2.mp4" controls style="width:100%; border-radius:10px;"></video>
+        <div class="caption">Testimony 2 – Healing / prayer</div>
+      </div>
+
+      <div class="gallery-item">
+        <video src="test3.mp4" controls style="width:100%; border-radius:10px;"></video>
+        <div class="caption">Testimony 3 – Child education</div>
+      </div>
+
+      <div class="gallery-item">
+        <video src="test4.mp4" controls style="width:100%; border-radius:10px;"></video>
+        <div class="caption">Ministry outreach clip</div>
+      </div>
+
+      <div class="gallery-item">
+        <video src="test5.mp4" controls style="width:100%; border-radius:10px;"></video>
+        <div class="caption">Worship &amp; thanksgiving</div>
+      </div>
+
+      <div class="gallery-item">
+        <video src="test6.mp4" controls style="width:100%; border-radius:10px;"></video>
+        <div class="caption">Special event highlight</div>
+      </div>
+
+        </p>
+    </div>
+  </section>
+  </div>
+</section>
+    </div>
+  </section>
+</section><style>
+  .zoom-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+  }
+  .zoom-modal img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:10px;
+    box-shadow:0 0 25px #000;
+  }
+</style>
+
+<div id="zoomBox" class="zoom-modal" onclick="this.style.display='none'">
+  <img id="zoomImage">
+</div>
+
+
+<!-- PROJECTS -->
+  <section class="card" id="projects">
+    <h2 class="section-title">Key Projects</h2>
+    <div class="project-list">
+      <div class="project">
+        <h3>01. Daily School Operations</h3>
+        <p>Teacher support, rent, electricity, books, copies and basic uniforms for the students.</p>
+      </div>
+      <div class="project">
+        <h3>02. Orphan Care Program</h3>
+        <p>Targeted support for orphan and semi-orphan children — school fees, notebooks, meals and regular pastoral care.</p>
+      </div>
+      <div class="project">
+        <h3>03. Community Kitchen (Vision)</h3>
+        <p>A simple kitchen to provide hot meals to school children and poorest families at least once or twice a week.</p>
+      </div>
+      <div class="project">
+        <h3>04. Basic Health &amp; Medical Help</h3>
+        <p>Connecting families to basic checkups, medicines and emergency help through local Christian doctors and clinics.</p>
+      </div>
+    </div>
+  </section>
+
+  
+
+<!-- DONATE FULL SECTION -->
+  <section class="card" id="donate">
+    <h2 class="section-title">Donate &amp; Partner With Us</h2>
+    <p>Your support keeps the school running and helps us reach more children and families. You can give through local Pakistani methods or international channels.</p>
+
+    <div class="donate-columns">
+      <div class="donate-box">
+        <h3>🇵🇰 Local — JazzCash / Easypaisa</h3>
+        <ul>
+          <li><strong>Account Title:</strong> Mushtaq Masih</li>
+          <li><strong>JazzCash:</strong> 03422721495</li>
+          <li><strong>Easypaisa:</strong> 03422721495</li>
+          <li>Use message: “For Heavenly Hand Ministry”.</li>
+        </ul>
+      </div>
+
+      <div class="donate-box">
+        <h3>🏦 Bank Transfer (Pakistan)</h3>
+        <ul>
+          <li><strong>Bank Name:</strong> HBL</li>
+          <li><strong>Account Title:</strong>MUSHTAQ</li>
+          <li><strong>Account No:</strong> 23177000617203</li>
+          <li><strong>IBAN:</strong> PK71HABB0023717000617203</li>
+        </ul>
+      </div>
+
+      <div class="donate-box">
+        <h3>🌍 International (Example)</h3>
+        <ul>
+          <li><strong>PayPal:</strong> paypal.me/yourlink</li>
+          <li><strong>Wise:</strong> wise.com/u/yourprofile</li>
+          <li><strong>Western Union Receiver:</strong> Mushtaq Masih, Pakistan</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top:12px;font-size:13px;color:var(--muted);">
+      <strong>Note:</strong> Replace the sample account numbers above with your real details before publishing the website.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Heavenly Hand Ministry &amp; Heavenly Light School — Qila Mustafabad, Gujranwala, Pakistan<br>
+    WhatsApp: +92-3453036995 • Email: mushtaqsamuel390@gmail.com<br>
+    © <span id="year">2025</span> All rights reserved.
+  </footer>
+
+</div>
+
+<!-- 
+
+MOBILE BOTTOM NAV -->
+<nav class="bottom-nav">
+  <a href="#home" class="nav-item"
+   onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'}); return false;">
+    <svg viewBox="0 0 24 24"><path d="M3 11.5L12 4l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z"/></svg>
+    <span>Home</span>
+  </a>
+  <a href="#school" class="nav-item">
+    <svg viewBox="0 0 24 24"><path d="M12 3L2 9l10 6 10-6-10-6zm-7 9.5V18l7 3 7-3v-5.5L12 16l-7-3.5z"/></svg>
+    <span>School</span>
+  </a>
+ 
+<a href="#ministry" class="nav-item"
+   onclick="document.getElementById('ministry').scrollIntoView({behavior:'smooth'}); return false;">
+  <svg viewBox="0 0 24 24">
+    <path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm-7 18a7 7 0 0 1 14 0H5z" />
+  </svg>
+  <span>Ministry</span>
+</a>
+<!-- TESTIMONIES NAV BUTTON -->
+<a href="#testimonies" class="nav-item"
+   onclick="document.getElementById('testimonies').scrollIntoView({behavior:'smooth'}); return false;">
+  <svg viewBox="0 0 24 24">
+    <path d="M4 4h16v12H4V4zm0 14h8v2H4v-2zm10 0h6v2h-6v-2z"/>
+  </svg>
+  <span>Testimonies</span>
+</a>
+  <a href="#projects" class="nav-item">
+    <svg viewBox="0 0 24 24"><path d="M4 4h7v7H4V4zm0 9h7v7H4v-7zm9-9h7v7h-7V4zm0 9h7v7h-7v-7z"/></svg>
+    <span>Projects</span>
+  </a> 
+
+
+  <a href="#donate" class="nav-item">
+    <svg viewBox="0 0 24 24"><path d="M12 21l-1-1C6 16 3 13.5 3 10.5 3 7.4 5.4 5 8.5 5 10.2 5 11.7 5.8 12 7c.3-1.2 1.8-2 3.5-2C18.6 5 21 7.4 21 10.5 21 13.5 18 16 13 20l-1 1z"/></svg>
+    <span>Donate</span>
+  </a>
+</nav>
+
+<!-- چھوٹا سا JS صرف سال خودکار کیلئے، بغیر کسی اور dependency کے -->
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script><script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: 'en',  // main زبان English
+        includedLanguages: 'en,ur,hi,fr,de,es,ar',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      },
+      'google_translate_element'
+    );
+  }
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
